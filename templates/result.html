@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="text-center my-5">
+
+  {% if authorized %}
+    <h2 class="text-success fw-bold mb-4">✅ Authorized User</h2>
+    <p class="lead">Congratulations! Your face, iris, and fingerprint matched successfully.</p>
+
+    <!-- Show Match Percentage only if authorized -->
+    <div class="my-5">
+      <h5 class="fw-bold mb-3">Match Percentage</h5>
+      <div class="progress" style="height: 30px;">
+        <div class="progress-bar bg-success progress-bar-striped progress-bar-animated"
+             role="progressbar" style="width: {{ match_percentage }}%;" 
+             aria-valuenow="{{ match_percentage }}" aria-valuemin="0" aria-valuemax="100">
+          {{ match_percentage }}%
+        </div>
+      </div>
+    </div>
+  
+  {% else %}
+    <h2 class="text-danger fw-bold mb-4">❌ Not Authorized</h2>
+    <p class="lead">Oops! Your biometrics didn't match. Please try again with clear and proper images.</p>
+  {% endif %}
+
+  <!-- Action Buttons -->
+  <div class="mt-5">
+    <a href="{{ url_for('main.predict') }}" class="btn btn-primary me-3">Predict Again</a>
+    <a href="{{ url_for('main.index') }}" class="btn btn-outline-secondary">Home</a>
+  </div>
+
+</div>
+
+<!-- 
+<div class="text-center my-5">
+
+  {% if authorized %}
+    <h2 class="text-success fw-bold mb-4">✅ Authorized User</h2>
+    <p class="lead">Congratulations! Your face, iris, and fingerprint matched successfully.</p>
+  {% else %}
+    <h2 class="text-danger fw-bold mb-4">❌ Not Authorized</h2>
+    <p class="lead">Oops! Your biometrics didn't match. Please try again with clear and proper images.</p>
+  {% endif %}
+
+  <!-- Match Percentage Progress Bar -->
+  <!-- <div class="my-5">
+    <h5 class="fw-bold mb-3">Match Percentage</h5>
+    <div class="progress" style="height: 30px;">
+      <div class="progress-bar {% if authorized %}bg-success{% else %}bg-danger{% endif %} progress-bar-striped progress-bar-animated"
+           role="progressbar" style="width: {{ match_percentage }}%;" 
+           aria-valuenow="{{ match_percentage }}" aria-valuemin="0" aria-valuemax="100">
+        {{ match_percentage }}%
+      </div>
+    </div>
+  </div> -->
+
+  <!-- Action Buttons -->
+  <!-- <div class="mt-5">
+    <a href="{{ url_for('main.predict') }}" class="btn btn-primary me-3">Predict Again</a>
+    <a href="{{ url_for('main.index') }}" class="btn btn-outline-secondary">Home</a>
+  </div> -->
+
+</div> -->
+
+<!-- 🔵 Side-by-Side Info Section -->
+<section class="mt-5 py-5 px-4 bg-light rounded-4 shadow-sm">
+    <div class="container">
+      <div class="row g-5">
+  
+        <!-- Left: How We Can Make This Work -->
+        <div class="col-lg-6">
+          <h4 class="fw-bold mb-4 text-primary">How We Can Make This Work</h4>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Ensure high-quality images with clear focus and good lighting.</li>
+            <li class="list-group-item"> Maintain a neutral expression for face detection (no extreme smiling or tilting).</li>
+            <li class="list-group-item"> Capture full eye region for accurate iris detection without heavy reflections.</li>
+            <li class="list-group-item"> Scan clean, uninjured fingers for better fingerprint accuracy.</li>
+            <li class="list-group-item">Avoid background noise and ensure the image has a plain or light background.</li>
+          </ul>
+        </div>
+  
+        <!-- Right: Why Biometric Verification Is Necessary -->
+        <div class="col-lg-6">
+          <h4 class="fw-bold mb-4 text-success">Why Biometric Verification Is Necessary</h4>
+          <p class="text-muted fs-5">
+            In today's digital era, securing personal identity is more critical than ever. Traditional password systems are vulnerable to breaches and hacking.
+            Biometrics like face, iris, and fingerprints offer advanced, secure, and reliable verification based on unique traits that are nearly impossible to replicate.
+            Implementing biometric systems protects individuals from identity theft, fraud, unauthorized access, and data breaches.
+            It builds trust, enhances security across industries (banking, healthcare, government), and ensures that the right person is authenticated at the right time.
+          </p>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+
+  {% endblock %}
+  

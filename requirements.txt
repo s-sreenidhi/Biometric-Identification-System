@@ -1,0 +1,8 @@
+Flask
+torch
+torchvision
+transformers
+opencv-python
+pywavelets
+scikit-learn
+joblib

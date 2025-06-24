@@ -1,0 +1,65 @@
+# === Python & Virtual Environment ===
+__pycache__/
+*.py[cod]
+*.so
+*.log
+*.pkl
+*.joblib
+*.h5
+*.pt
+*.pth
+*.npy
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+pip-wheel-metadata/
+
+# === Jupyter Notebooks Checkpoints ===
+.ipynb_checkpoints/
+
+# === Model Files & Output Data ===
+models/
+*.ckpt
+*.onnx
+*.tflite
+
+# === Image Datasets & Feature Files ===
+dataset/
+preprocessed_dataset/
+augmented_dataset/
+features_dataset/
+*.jpg
+*.bmp
+*.png
+
+# === Flask Specific ===
+instance/
+*.db
+*.sqlite3
+*.pyc
+
+# Flask compiled/static cache
+*.cache
+*.mo
+*.pot
+
+# === System Files ===
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# === VS Code / IDE ===
+.vscode/
+.idea/
+
+# === Environment Variables ===
+.env
+.env.*
+
+# === Logs & Reports ===
+*.log
+logs/
+results/

@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row align-items-center">
+  <!-- Left Section: Upload Form -->
+  <div class="col-lg-6">
+    <h2 class="fw-bold mb-4">Upload Images for Verification</h2>
+
+    <form id="predictForm" action="{{ url_for('main.predict') }}" method="POST" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label class="form-label">Face Image</label>
+        <input type="file" class="form-control" name="face" accept="image/*" onchange="previewImage(event, 'facePreview')" required>
+        <img id="facePreview" class="img-preview preview-animated mt-2" style="display:none;">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Iris Image</label>
+        <input type="file" class="form-control" name="iris" accept="image/*" onchange="previewImage(event, 'irisPreview')" required>
+        <img id="irisPreview" class="img-preview preview-animated mt-2" style="display:none;">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Fingerprint Image</label>
+        <input type="file" class="form-control" name="finger" accept="image/*" onchange="previewImage(event, 'fingerPreview')" required>
+        <img id="fingerPreview" class="img-preview preview-animated mt-2" style="display:none;">
+      </div>
+
+      <button id="submitBtn" type="submit" class="btn btn-success w-100 mt-3">
+        Predict Now
+      </button>
+    </form>
+  </div>
+
+  <!-- Right Section: Illustration -->
+  <div class="col-lg-6 text-center">
+    <img src="{{ url_for('static', filename='images/bio_detect.png') }}" alt="Bio Detection" class="img-fluid rounded-4 shadow">
+  </div>
+</div>
+
+<!-- 🔽 Info Section: How Biometrics Protect You -->
+<section class="mt-5 py-5 px-3 bg-light rounded-4 shadow-sm">
+  <div class="container">
+    <h4 class="mb-4 fw-bold text-center">How These Biometrics Protect You</h4>
+
+    <div class="accordion accordion-flush" id="protectionAccordion">
+
+      <!-- Face -->
+      <div class="accordion-item mb-3">
+        <h2 class="accordion-header" id="faceHeading">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faceInfo">
+            Face Detection
+          </button>
+        </h2>
+        <div id="faceInfo" class="accordion-collapse collapse" data-bs-parent="#protectionAccordion">
+          <div class="accordion-body">
+            Face detection provides contactless authentication, ideal for mobile devices and surveillance.
+            It quickly verifies users without physical input. Our models adapt to changes in appearance and lighting.
+            Widely used in banking, airports, and secure workplaces. Spoofing is prevented using 3D/motion-based techniques.
+          </div>
+        </div>
+      </div>
+
+      <!-- Iris -->
+      <div class="accordion-item mb-3">
+        <h2 class="accordion-header" id="irisHeading">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#irisInfo">
+             Iris Detection
+          </button>
+        </h2>
+        <div id="irisInfo" class="accordion-collapse collapse" data-bs-parent="#protectionAccordion">
+          <div class="accordion-body">
+            Iris recognition captures complex patterns in the colored part of your eye.
+            It offers unmatched accuracy and is used in border control, banking, and identity programs.
+            Even identical twins have different iris patterns, ensuring maximum uniqueness.
+            Works well in low light and long-term consistency.
+          </div>
+        </div>
+      </div>
+
+      <!-- Fingerprint -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="fingerHeading">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fingerInfo">
+             Fingerprint Detection
+          </button>
+        </h2>
+        <div id="fingerInfo" class="accordion-collapse collapse" data-bs-parent="#protectionAccordion">
+          <div class="accordion-body">
+            Fingerprints are unique, stable, and reliable throughout your life.
+            They’re used in law enforcement, mobile authentication, and office security.
+            Liveness detection avoids spoofing and ensures safety.
+            Fast and contact-based, it remains a go-to biometric method globally.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Scripts -->
+<script>
+  function previewImage(event, previewId) {
+    const reader = new FileReader();
+    reader.onload = function(){
+      const output = document.getElementById(previewId);
+      output.src = reader.result;
+      output.style.display = 'block';
+      output.classList.add('animate-in');
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+
+  const form = document.getElementById('predictForm');
+  const submitBtn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', function() {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Predicting...';
+  });
+</script>
+
+{% endblock %}

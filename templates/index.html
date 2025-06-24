@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Welcome Section -->
+<div class="text-center my-5" data-aos="zoom-in">
+  <h1 class="fw-bold mb-3">Welcome to Biometric Data Detection System</h1>
+  <p class="lead">Authenticate individuals using face, iris, and fingerprint recognition powered by deep learning.</p>
+  <a href="{{ url_for('main.predict') }}" class="btn btn-primary btn-lg mt-4">Start Prediction</a>
+</div>
+
+<!-- Face Detection -->
+<div class="row align-items-center my-5" data-aos="fade-up">
+  <div class="col-lg-6">
+    <h3 class="fw-bold">Face Detection</h3>
+    <p class="text-muted">
+      Face detection is a crucial biometric technique that analyzes unique facial features like eyes, nose, and jawline.
+      It uses deep convolutional neural networks (CNNs) and transformers to capture fine-grained patterns.
+      Our system uses ResNet50 for spatial encoding and ViT for contextual understanding.
+      This dual-model approach increases accuracy, even under varied lighting or facial expressions.
+      Face recognition ensures fast, contactless identification in real-world environments.
+    </p>
+  </div>
+  <div class="col-lg-6 text-center" data-aos="fade-left">
+    <img src="{{ url_for('static', filename='images/face_detect.png') }}" class="detection-image hover-zoom" alt="Face Detection">
+  </div>
+</div>
+
+<!-- Iris Detection -->
+<div class="row align-items-center my-5" data-aos="fade-up">
+  <div class="col-lg-6">
+    <h3 class="fw-bold">Iris Detection</h3>
+    <p class="text-muted">
+      Iris recognition captures the unique patterns in the colored part of the eye surrounding the pupil.
+      It is one of the most stable and accurate biometric methods due to minimal variability over time.
+      Our model uses wavelet-based texture analysis and ViT to deeply analyze iris features.
+      This combination provides high resistance to spoofing and ensures reliable identification.
+      Iris detection is widely used in border security, banking, and mobile authentication.
+    </p>
+  </div>
+  <div class="col-lg-6 text-center" data-aos="fade-left">
+    <img src="{{ url_for('static', filename='images/eyes_detect.png') }}" class="detection-image hover-zoom" alt="Iris Detection">
+  </div>
+</div>
+
+<!-- Fingerprint Detection -->
+<div class="row align-items-center my-5" data-aos="fade-up">
+  <div class="col-lg-6">
+    <h3 class="fw-bold">Fingerprint Detection</h3>
+    <p class="text-muted">
+      Fingerprint authentication uses the distinct ridges and valleys on human fingers to verify identity.
+      We extract wavelet-transformed features and use a custom CNN model for classification.
+      This method is non-intrusive and highly scalable for large population systems.
+      Fingerprint recognition is commonly used in attendance, mobile access, and criminal databases.
+      Our system ensures robust and quick fingerprint matching, even with partial inputs.
+    </p>
+  </div>
+  <div class="col-lg-6 text-center" data-aos="fade-left">
+    <img src="{{ url_for('static', filename='images/finger_detect.png') }}" class="detection-image hover-zoom" alt="Fingerprint Detection">
+  </div>
+</div>
+
+{% endblock %}
